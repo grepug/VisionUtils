@@ -11,6 +11,8 @@ let package = Package(
         .library(
             name: "VisionUtils",
             targets: ["VisionUtils"]),
+        .library(name: "VisionWeightCalculator",
+                 targets: ["VisionWeightCalculator"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -21,7 +23,10 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "VisionUtils",
-            dependencies: []),
+            path: "Sources/VisionUtils"),
+        .target(
+            name: "VisionWeightCalculator",
+            path: "Sources/VisionWeightCalculator"),
         .testTarget(
             name: "VisionUtilsTests",
             dependencies: ["VisionUtils"]),
