@@ -78,6 +78,13 @@ public extension WeightCalculatorForGoal {
     func progressPercentString(signed: Bool = false) -> String {
         (progress * 100).toString(fixedAndDroppingZeros: 2) + (signed ? "%" : "")
     }
+    
+    func progress(between startDate: Date, and endDate: Date) -> Double {
+        let progressAtStartDate = progressBefore(startDate)
+        let progressAtEndDate = progressBefore(endDate)
+        
+        return progressAtEndDate - progressAtStartDate
+    }
 }
 
 public extension WeightCalculatorForKeyResult {

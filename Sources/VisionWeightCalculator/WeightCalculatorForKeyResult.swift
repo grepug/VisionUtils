@@ -32,6 +32,7 @@ public extension WeightCalculatorForKeyResult {
         targetValue.toString(fixedAndDroppingZeros: 1)
     }
     
+    /// 实际上是 progress at a date
     func progressBefore(_ date: Date?) -> Double {
         let currentValue = currentValueBefore(date)
         
