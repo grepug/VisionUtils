@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Date {
+public extension Date {
     var weekday: Int {
         Calendar.current.component(.weekday, from: self)
     }
