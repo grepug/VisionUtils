@@ -60,4 +60,65 @@ final class VisionUtilsTests: XCTestCase {
         
         XCTAssertEqual(date3.days(to: date4), 2)
     }
+    
+  
+}
+
+final class DateUtilsTests: XCTestCase {
+    func test_start_of_week_is_correct() throws {
+        let date = "2022-05-31 08:00:00".toDate()!
+        let startOfWeek = "2022-05-30 08:00:00".toDate()!.startOfDay
+        
+        let date2 = "2022-05-29 08:00:00".toDate()!
+        let startOfWeek2 = "2022-05-23 08:00:00".toDate()!.startOfDay
+        
+        let date3 = "2022-05-23 01:00:00".toDate()!
+        let startOfWeek3 = date3.startOfDay
+        
+        XCTAssertEqual(date.startOfWeek, startOfWeek)
+        XCTAssertEqual(date2.startOfWeek, startOfWeek2)
+        XCTAssertEqual(date3.startOfWeek, startOfWeek3)
+    }
+    
+    func test_end_of_day() throws {
+        let date = "2022-05-31 08:00:00".toDate()!
+        let date2 = "2022-05-31 23:59:59".toDate()!
+        
+        XCTAssertEqual(date.endOfDay, date2)
+    }
+    
+    func test_end_of_week_is_correct() throws {
+        let date = "2022-05-31 08:00:00".toDate()!
+        let endOfWeek = "2022-06-05 08:00:00".toDate()!.endOfDay
+        
+        let date2 = "2022-05-29 08:00:00".toDate()!
+        let endOfWeek2 = "2022-05-29 08:00:00".toDate()!.endOfDay
+        
+        let date3 = "2022-05-23 01:00:00".toDate()!
+        let endOfWeek3 = "2022-05-29 01:00:00".toDate()!.endOfDay
+        
+        print("!!!", endOfWeek)
+        
+        XCTAssertEqual(date.endOfWeek, endOfWeek)
+        XCTAssertEqual(date2.endOfWeek, endOfWeek2)
+        XCTAssertEqual(date3.endOfWeek, endOfWeek3)
+    }
+    
+    func test_start_of_month() throws {
+        let date = "2022-05-31 08:00:00".toDate()!
+        let date2 = "2022-05-01 00:00:00".toDate()!
+        
+        XCTAssertEqual(date.startOfMonth, date2)
+    }
+    
+    func test_end_of_month() throws {
+        let date = "2022-05-01 08:00:00".toDate()!
+        let date2 = "2022-05-31 00:00:00".toDate()!.endOfDay
+        
+        let date3 = "2022-02-28 00:00:00".toDate()!
+        let date4 = "2022-02-28 00:00:00".toDate()!.endOfDay
+        
+        XCTAssertEqual(date.endOfMonth, date2)
+        XCTAssertEqual(date3.endOfMonth, date4)
+    }
 }

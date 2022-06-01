@@ -28,6 +28,10 @@ public extension Date {
         Calendar.current.startOfDay(for: self)
     }
     
+    var endOfDay: Self {
+        Calendar.current.date(byAdding: .second, value: -1, to: tomorrow.startOfDay)!
+    }
+    
     func days(to date: Date, includingLastDay: Bool = true) -> Int {
         let days = Calendar.current.dateComponents([.day], from: startOfDay, to: date.tomorrow.startOfDay).day ?? 0
         
@@ -39,11 +43,11 @@ public extension Date {
     }
     
     var tomorrow: Self {
-        Calendar.current.date(byAdding: .day, value: 1, to: self) ?? .init()
+        Calendar.current.date(byAdding: .day, value: 1, to: self)!
     }
     
     var yesterday: Self {
-        Calendar.current.date(byAdding: .day, value: -1, to: self) ?? .init()
+        Calendar.current.date(byAdding: .day, value: -1, to: self)!
     }
     
     func isBefore(_ date: Date) -> Bool {
