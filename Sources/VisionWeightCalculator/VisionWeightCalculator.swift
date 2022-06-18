@@ -88,16 +88,16 @@ public extension WeightCalculatorForGoal {
 }
 
 public extension WeightCalculatorForKeyResult {
-    func progress(in goal: WeightCalculatorForGoal, before date: Date?) -> Double {
-        let weightInGoal: Double
-        
+    func weightInGoal(_ goal: WeightCalculatorForGoal) -> Double {
         if goal.usingWeights {
-            weightInGoal = weightIndicator.value / goal.totalWeightIndicatorOfKRs
-        } else {
-            weightInGoal = 1 / Double(goal.keyResultObjects().count)
+            return weightIndicator.value / goal.totalWeightIndicatorOfKRs
         }
         
-        return weightInGoal * progressBefore(date)
+        return 1 / Double(goal.keyResultObjects().count)
+    }
+    
+    func progress(in goal: WeightCalculatorForGoal, before date: Date?) -> Double {
+        weightInGoal(goal) * progressBefore(date)
     }
     
     func progressPercentString(signed: Bool = false) -> String {
