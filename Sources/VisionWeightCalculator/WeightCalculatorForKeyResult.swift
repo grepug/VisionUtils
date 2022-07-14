@@ -36,11 +36,11 @@ public extension WeightCalculatorForKeyResult {
     func progressBefore(_ date: Date?) -> Double {
         let currentValue = currentValueBefore(date)
         
-        if targetValue == 0 || isZeroProgress {
+        if targetValue == 0 || isZeroProgress(before: date) {
             return 0
         }
         
-        if isFinished {
+        if isFinished(before: date) {
             return 1
         }
         
@@ -69,14 +69,14 @@ extension WeightCalculatorForKeyResult {
         currentValueBefore(nil)
     }
     
-    var isFinished: Bool {
-        direction.reached(targetValue, current: currentValue)
+    func isFinished(before date: Date?) -> Bool {
+        direction.reached(targetValue, current: currentValueBefore(date))
     }
     
-    var isZeroProgress: Bool {
+    func isZeroProgress(before date: Date?) -> Bool {
         switch direction {
-        case .down where currentValue >= initValue: return true
-        case .up where currentValue <= initValue: return true
+        case .down where currentValueBefore(date) >= initValue: return true
+        case .up where currentValueBefore(date) <= initValue: return true
         default: return false
         }
     }
